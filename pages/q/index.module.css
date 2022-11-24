@@ -1,0 +1,17 @@
+.content {
+  display: flex;
+  margin-top: 40px;
+}
+.main {
+  width: 70%;
+  /* border: 1px solid #ababab; */
+}
+.right {
+  flex: auto;
+  margin-left: 20px;
+  /* border: 1px solid #ababab; */
+}
+.carefully-chosen-li {
+  display: flex;
+  justify-content: space-between;
+}

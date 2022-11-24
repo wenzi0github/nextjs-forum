@@ -1,5 +1,43 @@
 .nav {
   background-color: #fff;
   border-bottom: 1px solid #f2f2f2;
-  height: 40px;
+  height: 60px;
+}
+.content {
+  display: flex;
+  justify-content: space-between;
+}
+.link {
+  display: flex;
+  align-items: center;
+}
+.link a {
+  margin-right: 10px;
+}
+.search {
+  flex: auto;
+  margin-right: 10px;
+}
+.search-form {
+  display: flex;
+  height: 60px;
+  align-items: center;
+  float: right;
+}
+.search input,
+.search button {
+  border-radius: 0;
+}
+.search-form-item {
+  margin-bottom: 0;
+  margin-right: 10px;
+  width: 200px;
+}
+.user {
+  line-height: 60px;
+  width: 100px;
+}
+.userinfo {
+  display: flex;
+  align-items: center;
 }
