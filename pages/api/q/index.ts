@@ -1,4 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import { ArticleItem } from '@/config/types/article';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 type Data = {
@@ -12,13 +13,13 @@ const createUUID = () => {
 
   return () => {
     const now = Date.now();
-    if (now === lasttime) {
-      id++;
-      return `${now.toString(32)}${id.toString(32)}`;
+    if (now !== lasttime) {
+      id = 0;
+      lasttime = now;
     }
-    id = 0;
-    lasttime = now;
-    return now.toString(32);
+    id++;
+    const id36 = `000${id.toString(36)}`.slice(-4);
+    return `${now.toString(32)}${id36}`;
   };
 };
 
@@ -32,22 +33,27 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
     title: 'nodejs16的环境如何安装？',
     // content,
     desc: content.slice(0, 100),
+    url: '',
     view: 123,
     reply: 234,
     pub_time: '2022/11/20 12:23',
     last_reply_time: '2022/11/20 12:23',
     publisher: {
+      id: 1,
       nick: '帅小丘',
       avatar: 'https://www.xiabingbao.com/upload/397362636d1292613.jpeg',
       department: '前端研发中心',
       signature: '',
     },
   };
-  const data = [];
+  const data: ArticleItem[] = [];
   for (let i = 0; i < 20; i++) {
+    const id = uuid();
     data.push({
       ...item,
-      id: uuid(),
+      id,
+      title: `nodejs16的${id}环境如何安装？`,
+      url: `/q/info/${id}.html`,
     });
   }
 

@@ -6,9 +6,10 @@ import Link from 'next/link';
 import axios from 'axios';
 import style from './index.module.css';
 import { useEffect, useState } from 'react';
+import { ArticleItem } from '@/config/types/article';
 
 const QueIndex = () => {
-  const [newestList, setNewestList] = useState<any[]>([]);
+  const [newestList, setNewestList] = useState<ArticleItem[]>([]);
 
   useEffect(() => {
     axios('/api/q').then(({ data }) => {
@@ -61,7 +62,7 @@ const QueIndex = () => {
             {newestList.map((item) => (
               <div className="item" key={item.id}>
                 <h3>
-                  <Link href={`/q/info/${item.id}`}>{item.title}</Link>
+                  <Link href={item.url}>{item.title}</Link>
                 </h3>
                 <div className="info">
                   <span className="view">浏览 {item.view}</span>
